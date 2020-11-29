@@ -1,3 +1,5 @@
+# install AWS SDK
+pip install --user awscli
 export PATH=$PATH:$HOME/.local/bin
 
 # install necessary dependency for ecs-deploy
@@ -17,8 +19,8 @@ eval $(aws ecr get-login --region us-east-1)
 # docker login --username $DOCKER_HUB_USER --password $DOCKER_HUB_PSW
 
 # build the docker image and push to an image repository
-docker build -t haoliangyu/ecs-auto-deploy .
-docker tag haoliangyu/ecs-auto-deploy:latest $IMAGE_REPO_URL:latest
+docker build -t github-action-celery .
+docker tag github-action-celery:latest $IMAGE_REPO_URL:latest
 docker push $IMAGE_REPO_URL:latest
 
 # update an AWS ECS service with the new image
