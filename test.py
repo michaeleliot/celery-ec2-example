@@ -6,6 +6,6 @@ def test_add():
     math = add(1, 2)
     assert math == 3
 
-def test_add():
+def test_subtract():
     math = subtract(2, 1)
     assert math == 1
