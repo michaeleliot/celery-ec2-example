@@ -1,5 +1,5 @@
 """
-Example celery test
+Example celery test hello
 """
 from tasks import add, subtract
 
