@@ -9,11 +9,18 @@ services:
   - docker
 script:
   - pytest **/*.py
-after_success:
-  - docker --version  # document the version travis is using
-  - pip install --user awscli # install aws cli w/o sudo
-  - export PATH=$PATH:$HOME/.local/bin # put aws in the path
-  - eval $(aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 752797697680.dkr.ecr.us-east-1.amazonaws.com) #needs AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvars
-  - docker build -t test .
-  - docker tag test:latest 752797697680.dkr.ecr.us-east-1.amazonaws.com/test:latest
-  - docker push 752797697680.dkr.ecr.us-east-1.amazonaws.com/test:latest
+# http://haoliangyu.github.io/blog/2018/03/19/AWS-ECS-auto-deployment-with-Travis-CI/
+# https://gist.github.com/BretFisher/14cd228f0d7e40dae085
+# after_success:
+#   - docker --version  # document the version travis is using
+#   - pip install --user awscli # install aws cli w/o sudo
+#   - export PATH=$PATH:$HOME/.local/bin # put aws in the path
+#   - eval $(aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 752797697680.dkr.ecr.us-east-1.amazonaws.com) #needs AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvars
+#   - docker build -t test .
+#   - docker tag test:latest 752797697680.dkr.ecr.us-east-1.amazonaws.com/test:latest
+#   - docker push 752797697680.dkr.ecr.us-east-1.amazonaws.com/test:latest
+deploy:
+  provider: script
+  script: bash deploy.sh
+  on:
+    branch: master
