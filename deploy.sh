@@ -9,7 +9,7 @@ curl https://raw.githubusercontent.com/silinternational/ecs-deploy/master/ecs-de
 sudo chmod +x /usr/bin/ecs-deploy
 
 # login AWS ECR
-eval $(aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $IMAGE_REPO_URL)
+eval $(aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 752797697680.dkr.ecr.us-east-1.amazonaws.com)
 
 # or login DockerHub
 # docker login --username $DOCKER_HUB_USER --password $DOCKER_HUB_PSW
