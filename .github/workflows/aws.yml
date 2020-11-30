@@ -24,8 +24,8 @@
 #    and best practices on handling the access key credentials.
 
 on:
-  release:
-    types: [created]
+  push:
+    branches: [ main ]
 
 name: Deploy to Amazon ECS
 
@@ -53,7 +53,7 @@ jobs:
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: my-ecr-repo
+        ECR_REPOSITORY: test
         IMAGE_TAG: ${{ github.sha }}
       run: |
         # Build a docker container and
